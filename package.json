@@ -1,0 +1,16 @@
+{
+  "name": "learning_node",
+  "version": "1.0.0",
+  "description": "learning node",
+  "main": "add2.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "learning",
+    "npm"
+  ],
+  "author": "xubaoxiang",
+  "license": "ISC"
+}
