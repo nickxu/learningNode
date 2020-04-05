@@ -12,5 +12,9 @@
     "npm"
   ],
   "author": "xubaoxiang",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "async": "^3.2.0",
+    "inputcheck-betr": "^1.0.0"
+  }
 }
