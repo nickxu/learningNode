@@ -12,7 +12,8 @@ var options = {
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded',
     'Content-Length': postData.length
-  }
+  },
+  agent: false // 禁止连接池
 };
 
 var req = http.request(options, function (response) {
