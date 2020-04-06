@@ -1,5 +1,6 @@
 var http = require('http');
 var fs = require('fs');
+var mime = require('mime');
 var webRoot = './';
 
 http.createServer(function (request, response) {
@@ -30,7 +31,9 @@ http.createServer(function (request, response) {
   //   console.log(err);
   // })
 
-  response.setHeader('Content-Type', 'text/html');
+  // Node mime2.0版本 lookup改名
+  var type = mime.getType(pathname);
+  response.setHeader('Content-Type', type);
 
   // use fs.stat来判断文件的类型与是否存在
   fs.stat(pathname, function (err, stats) {
@@ -40,7 +43,7 @@ http.createServer(function (request, response) {
       response.write('Resource missing. 404\n');
       response.end();
     } else {
-      response.setHeader('Content-Type', 'text/html');
+      response.setHeader('Content-Type', type);
 
       var file = fs.createReadStream(pathname);
       file.on('open', function () {
