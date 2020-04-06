@@ -17,20 +17,47 @@ http.createServer(function (request, response) {
   //   }
   // });
 
+  // create and pipe readable stream
+  // var file = fs.createReadStream(pathname);
+  // file.on('open', function () {
+  //   response.statusCode = 200;
+  //   file.pipe(response);
+  // });
+  //
+  // file.on('error', function (err) {
+  //   response.writeHead(403);
+  //   response.write('file is missing , or no permission problem');
+  //   console.log(err);
+  // })
+
   response.setHeader('Content-Type', 'text/html');
 
-  // create and pipe readable stream
-  var file = fs.createReadStream(pathname);
-  file.on('open', function () {
-    response.statusCode = 200;
-    file.pipe(response);
-  });
+  // use fs.stat来判断文件的类型与是否存在
+  fs.stat(pathname, function (err, stats) {
+    if (err) {
+      console.log(err);
+      response.writeHead(404);
+      response.write('Resource missing. 404\n');
+      response.end();
+    } else {
+      response.setHeader('Content-Type', 'text/html');
 
-  file.on('error', function (err) {
-    response.writeHead(403);
-    response.write('file is missing , or no permission problem');
-    console.log(err);
+      var file = fs.createReadStream(pathname);
+      file.on('open', function () {
+        response.writeHead(200);
+        file.pipe(response);
+      });
+
+      file.on("error", function (err) {
+        console.error(err);
+        response.writeHead(500);
+        response.write('File is missing or Permission denied');
+        response.end()
+      })
+    }
   })
+
+
 
 
 }).listen(8124);
