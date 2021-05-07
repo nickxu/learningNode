@@ -19,6 +19,6 @@
     "inputcheck-betr": "^1.0.0",
     "lodash": "^4.17.15",
     "mime": "^2.4.4",
-    "underscore": "^1.10.2"
+    "underscore": "^1.12.1"
   }
 }
