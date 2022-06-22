@@ -14,7 +14,7 @@
   "author": "xubaoxiang",
   "license": "ISC",
   "dependencies": {
-    "async": "^3.2.0",
+    "async": "^3.2.2",
     "commander": "^5.0.0",
     "inputcheck-betr": "^1.0.0",
     "lodash": "^4.17.15",
